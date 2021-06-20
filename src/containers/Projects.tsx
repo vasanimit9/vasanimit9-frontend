@@ -57,6 +57,7 @@ const Projects: React.FC = () => {
                             <WebsiteLink
                               href={project.repo}
                               rel="noopener noreferrer"
+                              target="_blank"
                             >
                               {strings.repo}
                             </WebsiteLink>
@@ -66,6 +67,7 @@ const Projects: React.FC = () => {
                             <WebsiteLink
                               href={project.url}
                               rel="noopener noreferrer"
+                              target="_blank"
                             >
                               {strings.demo}
                             </WebsiteLink>

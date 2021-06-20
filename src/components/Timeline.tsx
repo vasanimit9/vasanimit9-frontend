@@ -33,7 +33,11 @@ const Timeline: React.FC<Props> = React.memo((props: Props) => {
               {exp.description && <ContentBody>{exp.description}</ContentBody>}
               {exp.organization?.url && (
                 <WebsiteLinkContainer>
-                  <WebsiteLink href={exp.organization.url}>
+                  <WebsiteLink
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    href={exp.organization.url}
+                  >
                     {exp.organization.name} 👉
                   </WebsiteLink>
                 </WebsiteLinkContainer>
