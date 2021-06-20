@@ -1,4 +1,4 @@
-import { IExperience, IFrontPage, IProject } from "../types";
+import { IExperience, IFrontPage, IPost, IProject } from "../types";
 import axios from "axios";
 import { apiBaseURL } from "../utils/constants";
 
@@ -21,6 +21,16 @@ export const fetchProjects = async (): Promise<IProject[]> => {
     .get(`${apiBaseURL}/projects`, {
       params: {
         _sort: "circa:DESC",
+      },
+    })
+    .then((res) => res.data);
+};
+
+export const fetchPosts = async (): Promise<IPost[]> => {
+  return await axios
+    .get(`${apiBaseURL}/posts`, {
+      params: {
+        _sort: "date:DESC",
       },
     })
     .then((res) => res.data);

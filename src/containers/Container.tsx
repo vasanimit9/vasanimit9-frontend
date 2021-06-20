@@ -5,20 +5,21 @@ import Sidebar from "../components/Sidebar";
 import { NavigationObject } from "../types/props";
 import { Colors } from "../utils/constants";
 import { useWindowSize } from "use-hooks";
-import { Route } from "react-router";
+import { Redirect, Route, Switch } from "react-router";
 import Experience from "./Experience";
 import Projects from "./Projects";
+import Blog from "./Blog";
 
 interface Props {}
 
 const Container: React.FC<Props> = () => {
   const windowSize = useWindowSize();
 
-  const navigationObjects: NavigationObject[] = [
+  const sidebarNavigationObjects: NavigationObject[] = [
     {
       emoji: "🏡",
       label: "Home",
-      link: "/",
+      link: "/home",
       component: <FrontPage />,
     },
     {
@@ -33,16 +34,25 @@ const Container: React.FC<Props> = () => {
       link: "/projects",
       component: <Projects />,
     },
+    {
+      emoji: "✍",
+      label: "Blog",
+      link: "/blog",
+      component: <Blog />,
+    },
   ];
 
   return (
     <AppContainer {...windowSize}>
-      <Sidebar menuItems={navigationObjects} />
-      {navigationObjects.map((sidebarMenuItem) => (
-        <Route key={sidebarMenuItem.label} path={sidebarMenuItem.link} exact>
-          {sidebarMenuItem.component}
-        </Route>
-      ))}
+      <Sidebar menuItems={sidebarNavigationObjects} />
+      <Switch>
+        {sidebarNavigationObjects.map((sidebarMenuItem) => (
+          <Route key={sidebarMenuItem.label} path={sidebarMenuItem.link}>
+            {sidebarMenuItem.component}
+          </Route>
+        ))}
+        <Redirect path="/" to={sidebarNavigationObjects[0].link} />
+      </Switch>
     </AppContainer>
   );
 };
@@ -69,7 +79,7 @@ const AppContainer = styled.div<{ height?: number; width?: number }>`
   }
 
   div & ::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: ${Colors.secondaryBackground};
     border-radius: 5px;
   }
 `;

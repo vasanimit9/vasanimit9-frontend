@@ -1,7 +1,12 @@
 import { Action, ActionTypes, State } from "../types";
 
 export const reducer = (
-  state: State = { frontPage: undefined, experiences: [], projects: [] },
+  state: State = {
+    frontPage: undefined,
+    experiences: [],
+    projects: [],
+    posts: [],
+  },
   action: Action
 ): State => {
   switch (action.type) {
@@ -11,6 +16,8 @@ export const reducer = (
       return { ...state, experiences: action.payload };
     case ActionTypes.StoreProjects:
       return { ...state, projects: action.payload };
+    case ActionTypes.StorePosts:
+      return { ...state, posts: action.payload };
     default:
       return { ...state };
   }

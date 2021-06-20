@@ -1,11 +1,11 @@
-import { IFile } from './file';
-import { ITag } from './tag';
+import { IFile } from "./file";
+import { ITag } from "./tag";
 
 /**
  * Model definition for Front Page
  */
 export interface IFrontPage {
-  id: string;
+  id: number;
   heading?: string;
   tags: ITag[];
   profilePicture?: IFile;

@@ -14,7 +14,7 @@ const Projects: React.FC = () => {
   const projects = useSelector(getProjects);
 
   const dispatch = useDispatch();
-  // @
+
   useEffect(() => {
     if (projects.length !== 0) {
       return;
@@ -23,90 +23,97 @@ const Projects: React.FC = () => {
   }, [projects, dispatch]);
 
   return (
-    <Container>
-      {Array(Math.ceil(projects.length / numberOfColumns))
-        .fill(0)
-        .map((_, rowIndex) => (
-          <CardContainer key={rowIndex}>
-            {Array(numberOfColumns)
-              .fill(0)
-              .map((_, index) => {
-                const projectIndex = rowIndex * numberOfColumns + index;
-                if (projectIndex < projects.length) {
-                  const project = projects[projectIndex];
-                  return (
-                    <Card key={index}>
-                      <CardHeader>
-                        {project.name && (
-                          <ContentHeaderTitle>
-                            {project.name}
-                          </ContentHeaderTitle>
-                        )}
-                        {project.circa && (
-                          <ContentHeaderSubtitle>
-                            {dayjs(project.circa).format("MMM YYYY")}
-                          </ContentHeaderSubtitle>
-                        )}
-                      </CardHeader>
-                      {project.description && (
-                        <ContentBody>{project.description}</ContentBody>
-                      )}
-                      {(project.repo || project.url) && (
-                        <WebsiteLinkContainer>
-                          {project.repo && (
-                            <WebsiteLink
-                              href={project.repo}
-                              rel="noopener noreferrer"
-                              target="_blank"
-                            >
-                              {strings.repo}
-                            </WebsiteLink>
+    <SuperContainer>
+      <Container>
+        {Array(Math.ceil(projects.length / numberOfColumns))
+          .fill(0)
+          .map((_, rowIndex) => (
+            <CardContainer key={rowIndex}>
+              {Array(numberOfColumns)
+                .fill(0)
+                .map((_, index) => {
+                  const projectIndex = rowIndex * numberOfColumns + index;
+                  if (projectIndex < projects.length) {
+                    const project = projects[projectIndex];
+                    return (
+                      <Card key={index}>
+                        <CardHeader>
+                          {project.name && (
+                            <ContentHeaderTitle>
+                              {project.name}
+                            </ContentHeaderTitle>
                           )}
-                          {project.repo && project.url && <br />}
-                          {project.url && (
-                            <WebsiteLink
-                              href={project.url}
-                              rel="noopener noreferrer"
-                              target="_blank"
-                            >
-                              {strings.demo}
-                            </WebsiteLink>
-                          )}{" "}
-                        </WebsiteLinkContainer>
-                      )}
-                      {project.tags.length !== 0 && (
-                        <TagsContainer>
-                          {project.tags.map((tag) => (
-                            <Tag key={tag.slug}>{tag.label}</Tag>
-                          ))}
-                        </TagsContainer>
-                      )}
-                    </Card>
-                  );
-                } else {
-                  return <Fragment key={index}></Fragment>;
-                }
-              })}
-          </CardContainer>
-        ))}
-    </Container>
+                          {project.circa && (
+                            <ContentHeaderSubtitle>
+                              {dayjs(project.circa).format("MMM YYYY")}
+                            </ContentHeaderSubtitle>
+                          )}
+                        </CardHeader>
+                        {project.description && (
+                          <ContentBody>{project.description}</ContentBody>
+                        )}
+                        {(project.repo || project.url) && (
+                          <WebsiteLinkContainer>
+                            {project.repo && (
+                              <WebsiteLink
+                                href={project.repo}
+                                rel="noopener noreferrer"
+                                target="_blank"
+                              >
+                                {strings.repo}
+                              </WebsiteLink>
+                            )}
+                            {project.repo && project.url && <br />}
+                            {project.url && (
+                              <WebsiteLink
+                                href={project.url}
+                                rel="noopener noreferrer"
+                                target="_blank"
+                              >
+                                {strings.demo}
+                              </WebsiteLink>
+                            )}{" "}
+                          </WebsiteLinkContainer>
+                        )}
+                        {project.tags.length !== 0 && (
+                          <TagsContainer>
+                            {project.tags.map((tag) => (
+                              <Tag key={tag.slug}>{tag.label}</Tag>
+                            ))}
+                          </TagsContainer>
+                        )}
+                      </Card>
+                    );
+                  } else {
+                    return <Fragment key={index} />;
+                  }
+                })}
+            </CardContainer>
+          ))}
+      </Container>
+    </SuperContainer>
   );
 };
 
 export default Projects;
 
+const SuperContainer = styled.div`
+  flex: 1;
+  overflow: auto;
+  height: 100%;
+`;
+
 const Container = styled.div`
   margin: 0 auto;
-  max-width: 1200px;
-  margin: 0 auto;
-  height: 100%;
-  overflow: auto;
+  max-width: 1000px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; ;
 `;
 
 const CardContainer = styled.div`
+  align-self: stretch;
   display: flex;
   padding: 25px 0;
   width: 100%;
@@ -158,10 +165,6 @@ const TagsContainer = styled.div`
 
 const WebsiteLinkContainer = styled.div`
   margin-top: 10px;
-  /* display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%; */
 `;
 
 const WebsiteLink = styled.a`

@@ -10,6 +10,7 @@ export default Tag;
 
 const TagSpan = styled.span`
   background-color: ${Colors.primary};
+  font-size: 0.9em;
   padding: 2px 6px 1px;
   margin-right: 10px;
   margin-bottom: 10px;

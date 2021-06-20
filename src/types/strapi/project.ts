@@ -1,10 +1,10 @@
-import { ITag } from './tag';
+import { ITag } from "./tag";
 
 /**
  * Model definition for project
  */
 export interface IProject {
-  id: string;
+  id: number;
   name?: string;
   description?: string;
   tags: ITag[];

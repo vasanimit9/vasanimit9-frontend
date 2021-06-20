@@ -1,11 +1,11 @@
-import { IOrganization } from './organization';
-import { ITag } from './tag';
+import { IOrganization } from "./organization";
+import { ITag } from "./tag";
 
 /**
  * Model definition for experience
  */
 export interface IExperience {
-  id: string;
+  id: number;
   startDate: Date;
   endDate?: Date;
   position?: string;

@@ -3,9 +3,11 @@ import {
   IExperience,
   IFrontPage,
   IProject,
+  IPost,
   StoreExperiences,
   StoreFrontPage,
   StoreProjects,
+  StorePosts,
 } from "../types";
 
 export const setFrontPage = (frontPage: IFrontPage): StoreFrontPage => ({
@@ -23,4 +25,9 @@ export const setExperiences = (
 export const setProjects = (projects: IProject[]): StoreProjects => ({
   type: ActionTypes.StoreProjects,
   payload: projects,
+});
+
+export const setPosts = (posts: IPost[]): StorePosts => ({
+  type: ActionTypes.StorePosts,
+  payload: posts,
 });

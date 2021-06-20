@@ -16,7 +16,6 @@ const Sidebar: React.FC<Props> = React.memo((props: Props) => {
           to={menuItem.link}
           key={menuItem.label}
           activeStyle={{ backgroundColor: Colors.primary }}
-          exact
         >
           {menuItem.emoji}
         </MenuItemContainer>
@@ -50,4 +49,8 @@ const MenuItemContainer = styled(NavLink)`
   justify-content: center;
   font-size: 22px;
   text-decoration: none;
+
+  :hover {
+    background-color: ${Colors.secondaryBackground};
+  }
 `;
