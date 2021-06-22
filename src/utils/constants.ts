@@ -9,6 +9,13 @@ export const Colors = {
 
 export const apiBaseURL = "https://vasanimit9-backend.herokuapp.com";
 
+export const localStorageKeys = {
+  frontPage: `${apiBaseURL}-frontpage`,
+  experiences: `${apiBaseURL}-experiences`,
+  projects: `${apiBaseURL}-projects`,
+  posts: `${apiBaseURL}-posts`
+}
+
 export const Dimens = {
   sidebar: 60,
   mobileMaxWidth: 480,

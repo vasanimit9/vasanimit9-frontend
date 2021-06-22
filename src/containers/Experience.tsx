@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { fetchExperiences } from "../api";
+import { addExperiencesToStore, } from "../api";
 import Timeline from "../components/Timeline";
 import { setExperiences } from "../utils/actions";
 import { getExperiences } from "../utils/selectors";
@@ -15,7 +15,7 @@ const Experience: React.FC = () => {
     if (experiences.length !== 0) {
       return;
     }
-    fetchExperiences().then((experiences) =>
+    addExperiencesToStore((experiences) =>
       dispatch(setExperiences(experiences))
     );
   }, [experiences, dispatch]);

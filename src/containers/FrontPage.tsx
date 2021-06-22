@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { useWindowSize } from "use-hooks";
-import { fetchFrontPage } from "../api";
+import { addFrontPageToStore } from "../api";
 import { ImageFormatTypes } from "../types";
 import { Dimens } from "../utils/constants";
 import Tag from "../components/Tag";
@@ -28,7 +28,7 @@ const FrontPage: React.FC = () => {
     if (frontPage) {
       return;
     }
-    fetchFrontPage().then((frontPage) => {
+    addFrontPageToStore((frontPage) => {
       dispatch(setFrontPage(frontPage));
     });
   }, [dispatch, frontPage]);

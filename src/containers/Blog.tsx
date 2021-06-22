@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { Colors, Dimens } from "../utils/constants";
 import { getPosts } from "../utils/selectors";
 import Tag from "../components/Tag";
-import { fetchPosts } from "../api";
+import { addPostsToStore,  } from "../api";
 import { setPosts } from "../utils/actions";
 import { ImageFormatTypes } from "../types";
 import Post from "../components/Post";
@@ -21,7 +21,7 @@ const Blog: React.FC = () => {
     if (posts.length !== 0) {
       return;
     }
-    fetchPosts().then((posts) => dispatch(setPosts(posts)));
+    addPostsToStore((posts) => dispatch(setPosts(posts)));
   }, [posts, dispatch]);
 
   return (

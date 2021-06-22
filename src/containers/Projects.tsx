@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { fetchProjects } from "../api";
+import { addProjectsToStore,  } from "../api";
 import Tag from "../components/Tag";
 import { setProjects } from "../utils/actions";
 import { Colors, Dimens, strings } from "../utils/constants";
@@ -19,7 +19,7 @@ const Projects: React.FC = () => {
     if (projects.length !== 0) {
       return;
     }
-    fetchProjects().then((projects) => dispatch(setProjects(projects)));
+    addProjectsToStore((projects) => dispatch(setProjects(projects)));
   }, [projects, dispatch]);
 
   return (
